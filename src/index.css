@@ -2,14 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* CSG Leadership Demo Design System - Minimalist & Professional */
 
 @layer base {
   :root {
+    /* Core Brand Colors - Deep Blues for Authority */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
+    --surface: 210 20% 98%;
+    --surface-elevated: 210 25% 96%;
+    
+    /* Pipeline Stage Colors */
+    --ast-color: 210 100% 90%;      /* Light Blue */
+    --ast-border: 210 100% 60%;     /* Blue */
+    --lair-color: 45 100% 90%;      /* Light Yellow */
+    --lair-border: 45 100% 50%;     /* Yellow */
+    --csg-color: 120 60% 90%;       /* Light Green */
+    --csg-border: 120 60% 40%;      /* Green */
+    --oid-color: 0 60% 95%;         /* Light Red */
+    --oid-border: 0 60% 60%;        /* Red */
+    --policy-color: 220 15% 92%;    /* Light Gray */
+    --policy-border: 220 15% 50%;   /* Gray */
+    
+    /* Brand Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210, 100%, 60%), hsl(220, 100%, 70%));
+    --gradient-surface: linear-gradient(180deg, hsl(210, 20%, 99%), hsl(210, 15%, 96%));
+    --gradient-hero: linear-gradient(135deg, hsl(210, 100%, 95%), hsl(220, 60%, 98%));
+    
+    /* Enterprise Shadows */
+    --shadow-soft: 0 2px 8px -2px hsl(210, 40%, 8% / 0.05);
+    --shadow-medium: 0 4px 16px -4px hsl(210, 40%, 8% / 0.1);
+    --shadow-strong: 0 8px 32px -8px hsl(210, 40%, 8% / 0.15);
+    
+    /* Interactive States */
+    --hover-lift: 0 8px 24px -6px hsl(210, 40%, 8% / 0.12);
+    --active-press: 0 2px 8px -2px hsl(210, 40%, 8% / 0.2);
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -17,11 +44,20 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 210 100% 60%;           /* Professional Blue */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 220 100% 70%;      /* Lighter Blue */
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 210 25% 96%;          /* Subtle Gray */
     --secondary-foreground: 222.2 47.4% 11.2%;
+    
+    /* Status Colors */
+    --success: 120 60% 50%;            /* Green for compliance */
+    --success-foreground: 0 0% 100%;
+    --warning: 45 100% 60%;            /* Yellow for warnings */
+    --warning-foreground: 45 100% 15%;
+    --danger: 0 70% 60%;               /* Red for violations */
+    --danger-foreground: 0 0% 100%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -58,6 +94,8 @@ All colors MUST be HSL.
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
+    --surface: 222.2 47% 11%;
+    --surface-elevated: 222.2 47% 15%;
 
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
@@ -100,6 +138,36 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  /* Custom Classes for CSG Components */
+  .pipeline-stage-ast {
+    @apply bg-[hsl(var(--ast-color))] border-[hsl(var(--ast-border))] border-2;
+  }
+  
+  .pipeline-stage-lair {
+    @apply bg-[hsl(var(--lair-color))] border-[hsl(var(--lair-border))] border-2;
+  }
+  
+  .pipeline-stage-csg {
+    @apply bg-[hsl(var(--csg-color))] border-[hsl(var(--csg-border))] border-2;
+  }
+  
+  .pipeline-stage-oid {
+    @apply bg-[hsl(var(--oid-color))] border-[hsl(var(--oid-border))] border-2;
+  }
+  
+  .pipeline-stage-policy {
+    @apply bg-[hsl(var(--policy-color))] border-[hsl(var(--policy-border))] border-2;
+  }
+  
+  .enterprise-card {
+    @apply bg-[hsl(var(--surface))] border border-border rounded-lg shadow-[var(--shadow-soft)] 
+           hover:shadow-[var(--shadow-medium)] transition-all duration-300;
+  }
+  
+  .hero-gradient {
+    background: var(--gradient-hero);
   }
 }
