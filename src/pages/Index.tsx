@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/HeroSection";
+import { CPGExplanation } from "@/components/CPGExplanation";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { PipelineDiagram } from "@/components/PipelineDiagram";
 import { NoveltyCards } from "@/components/NoveltyCards";
@@ -10,6 +11,7 @@ const Index = () => {
   return (
     <main className="min-h-screen">
       <HeroSection />
+      <CPGExplanation />
       <ComparisonTable />
       <PipelineDiagram />
       <NoveltyCards />
