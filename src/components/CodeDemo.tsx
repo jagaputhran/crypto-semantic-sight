@@ -150,9 +150,9 @@ export const CodeDemo = () => {
 
               {Object.entries(codeExamples).map(([lang, example]) => (
                 <TabsContent key={lang} value={lang} className="space-y-6">
-                  <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-                    {/* Code Panel */}
-                    <Card className="bg-background xl:col-span-1">
+                  <div className="space-y-6">
+                    {/* Code Panel - Full Width */}
+                    <Card className="bg-background">
                       <CardHeader className="pb-3">
                         <CardTitle className="text-lg flex items-center gap-2">
                           <Code2 className="w-5 h-5" />
@@ -174,82 +174,85 @@ export const CodeDemo = () => {
                       </CardContent>
                     </Card>
 
-                    {/* Visual Graph Panel */}
-                    <Card className="bg-background xl:col-span-1">
-                      <CardHeader className="pb-3">
-                        <CardTitle className="text-lg flex items-center gap-2">
-                          <Network className="w-5 h-5" />
-                          Visual Graph
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        {showCsg ? (
-                          <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                          >
-                            <GraphVisualization data={example.csg} />
-                          </motion.div>
-                        ) : (
-                          <div className="flex items-center justify-center h-80 text-muted-foreground">
-                            <div className="text-center">
-                              <Network className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                              <p>Visual graph will appear after analysis</p>
+                    {/* Results Grid - Two Columns */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      {/* Visual Graph Panel */}
+                      <Card className="bg-background">
+                        <CardHeader className="pb-3">
+                          <CardTitle className="text-lg flex items-center gap-2">
+                            <Network className="w-5 h-5" />
+                            Visual Graph
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          {showCsg ? (
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ duration: 0.5, delay: 0.2 }}
+                            >
+                              <GraphVisualization data={example.csg} />
+                            </motion.div>
+                          ) : (
+                            <div className="flex items-center justify-center h-80 text-muted-foreground">
+                              <div className="text-center">
+                                <Network className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                                <p>Visual graph will appear after analysis</p>
+                              </div>
                             </div>
-                          </div>
-                        )}
-                      </CardContent>
-                    </Card>
+                          )}
+                        </CardContent>
+                      </Card>
 
-                    {/* CSG JSON Output Panel */}
-                    <Card className="bg-background xl:col-span-1">
-                      <CardHeader className="pb-3">
-                        <CardTitle className="text-lg flex items-center gap-2">
-                          <FileJson className="w-5 h-5" />
-                          CSG Output
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        {showCsg ? (
-                          <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.4 }}
-                            className="space-y-4"
-                          >
-                            <div className="bg-[hsl(var(--surface-elevated))] p-4 rounded-lg max-h-60 overflow-y-auto">
-                              <pre className="text-xs">
-                                <code>{JSON.stringify(example.csg, null, 2)}</code>
-                              </pre>
+                      {/* CSG JSON Output Panel */}
+                      <Card className="bg-background">
+                        <CardHeader className="pb-3">
+                          <CardTitle className="text-lg flex items-center gap-2">
+                            <FileJson className="w-5 h-5" />
+                            CSG Output
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          {showCsg ? (
+                            <motion.div
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.5, delay: 0.4 }}
+                              className="space-y-4"
+                            >
+                              <div className="bg-[hsl(var(--surface-elevated))] p-4 rounded-lg max-h-60 overflow-y-auto">
+                                <pre className="text-xs">
+                                  <code>{JSON.stringify(example.csg, null, 2)}</code>
+                                </pre>
+                              </div>
+                              
+                              <div className="border-t pt-4">
+                                <h4 className="font-semibold mb-2 flex items-center gap-2">
+                                  <Shield className="w-4 h-4" />
+                                  Compliance Status
+                                </h4>
+                                <Badge 
+                                  variant={example.csg.policy?.startsWith('✅') ? 'default' : 'destructive'}
+                                  className={example.csg.policy?.startsWith('✅') 
+                                    ? 'bg-[hsl(var(--success))] hover:bg-[hsl(var(--success))]' 
+                                    : 'bg-[hsl(var(--danger))] hover:bg-[hsl(var(--danger))]'
+                                  }
+                                >
+                                  {example.csg.policy}
+                                </Badge>
+                              </div>
+                            </motion.div>
+                          ) : (
+                            <div className="flex items-center justify-center h-80 text-muted-foreground">
+                              <div className="text-center">
+                                <FileJson className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                                <p>JSON output will appear after analysis</p>
+                              </div>
                             </div>
-                            
-                            <div className="border-t pt-4">
-                              <h4 className="font-semibold mb-2 flex items-center gap-2">
-                                <Shield className="w-4 h-4" />
-                                Compliance Status
-                              </h4>
-                              <Badge 
-                                variant={example.csg.policy?.startsWith('✅') ? 'default' : 'destructive'}
-                                className={example.csg.policy?.startsWith('✅') 
-                                  ? 'bg-[hsl(var(--success))] hover:bg-[hsl(var(--success))]' 
-                                  : 'bg-[hsl(var(--danger))] hover:bg-[hsl(var(--danger))]'
-                                }
-                              >
-                                {example.csg.policy}
-                              </Badge>
-                            </div>
-                          </motion.div>
-                        ) : (
-                          <div className="flex items-center justify-center h-80 text-muted-foreground">
-                            <div className="text-center">
-                              <FileJson className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                              <p>JSON output will appear after analysis</p>
-                            </div>
-                          </div>
-                        )}
-                      </CardContent>
-                    </Card>
+                          )}
+                        </CardContent>
+                      </Card>
+                    </div>
                   </div>
                 </TabsContent>
               ))}
