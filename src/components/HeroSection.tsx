@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Shield, Zap, Target } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Shield, Zap, Target } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const HeroSection = () => {
   return (
@@ -23,45 +23,45 @@ export const HeroSection = () => {
             Automating compliance, crypto lineage, and risk detection — beyond today's code scanners.
           </p>
           
-          <div className="flex flex-wrap gap-6 justify-center items-center mb-16">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-[var(--shadow-soft)]"
-            >
-              <Shield className="w-5 h-5 text-[hsl(var(--success))]" />
-              <span className="font-medium">Automated Compliance</span>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              className="flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-[var(--shadow-soft)]"
-            >
-              <Zap className="w-5 h-5 text-[hsl(var(--warning))]" />
-              <span className="font-medium">Semantic Analysis</span>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              className="flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-[var(--shadow-soft)]"
-            >
-              <Target className="w-5 h-5 text-[hsl(var(--danger))]" />
-              <span className="font-medium">Risk Detection</span>
-            </motion.div>
-          </div>
-          
-          <Button 
-            size="lg" 
-            className="text-lg px-8 py-6 bg-primary hover:bg-[hsl(var(--primary-glow))] transition-all duration-300 shadow-[var(--shadow-medium)] hover:shadow-[var(--hover-lift)]"
+          <motion.div 
+            className="flex flex-wrap gap-4 justify-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
           >
-            Explore the Demo
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
+            <div className="flex items-center gap-2 text-sm bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
+              <Shield className="w-4 h-4 text-primary" />
+              Automated Compliance
+            </div>
+            <div className="flex items-center gap-2 text-sm bg-accent/10 px-4 py-2 rounded-full border border-accent/20">
+              <Zap className="w-4 h-4 text-accent" />
+              Semantic Analysis  
+            </div>
+            <div className="flex items-center gap-2 text-sm bg-secondary/10 px-4 py-2 rounded-full border border-secondary/20">
+              <Target className="w-4 h-4 text-secondary" />
+              Zero False Positives
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.0 }}
+          >
+            <Link 
+              to="/problem-analysis"
+              className="px-8 py-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 font-medium"
+            >
+              Understand the Problem
+            </Link>
+            <Link 
+              to="/technical-deep-dive"
+              className="px-8 py-4 bg-background border-2 border-primary text-primary rounded-lg hover:bg-primary/5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 font-medium"
+            >
+              See the Solution
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
     </section>
