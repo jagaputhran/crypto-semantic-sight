@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Play, Code2, FileJson, Shield } from "lucide-react";
+import { Play, Code2, FileJson, Shield, Network } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { GraphVisualization } from "@/components/GraphVisualization";
 
 const codeExamples = {
   python: {
@@ -149,9 +150,9 @@ export const CodeDemo = () => {
 
               {Object.entries(codeExamples).map(([lang, example]) => (
                 <TabsContent key={lang} value={lang} className="space-y-6">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
                     {/* Code Panel */}
-                    <Card className="bg-background">
+                    <Card className="bg-background xl:col-span-1">
                       <CardHeader className="pb-3">
                         <CardTitle className="text-lg flex items-center gap-2">
                           <Code2 className="w-5 h-5" />
@@ -173,12 +174,40 @@ export const CodeDemo = () => {
                       </CardContent>
                     </Card>
 
-                    {/* CSG Output Panel */}
-                    <Card className="bg-background">
+                    {/* Visual Graph Panel */}
+                    <Card className="bg-background xl:col-span-1">
+                      <CardHeader className="pb-3">
+                        <CardTitle className="text-lg flex items-center gap-2">
+                          <Network className="w-5 h-5" />
+                          Visual Graph
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        {showCsg ? (
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                          >
+                            <GraphVisualization data={example.csg} />
+                          </motion.div>
+                        ) : (
+                          <div className="flex items-center justify-center h-80 text-muted-foreground">
+                            <div className="text-center">
+                              <Network className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                              <p>Visual graph will appear after analysis</p>
+                            </div>
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+
+                    {/* CSG JSON Output Panel */}
+                    <Card className="bg-background xl:col-span-1">
                       <CardHeader className="pb-3">
                         <CardTitle className="text-lg flex items-center gap-2">
                           <FileJson className="w-5 h-5" />
-                          CSG Semantic Graph
+                          CSG Output
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
@@ -186,11 +215,11 @@ export const CodeDemo = () => {
                           <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
+                            transition={{ duration: 0.5, delay: 0.4 }}
                             className="space-y-4"
                           >
-                            <div className="bg-[hsl(var(--surface-elevated))] p-4 rounded-lg">
-                              <pre className="text-xs overflow-x-auto">
+                            <div className="bg-[hsl(var(--surface-elevated))] p-4 rounded-lg max-h-60 overflow-y-auto">
+                              <pre className="text-xs">
                                 <code>{JSON.stringify(example.csg, null, 2)}</code>
                               </pre>
                             </div>
@@ -201,8 +230,8 @@ export const CodeDemo = () => {
                                 Compliance Status
                               </h4>
                               <Badge 
-                                variant={example.csg.policy.startsWith('✅') ? 'default' : 'destructive'}
-                                className={example.csg.policy.startsWith('✅') 
+                                variant={example.csg.policy?.startsWith('✅') ? 'default' : 'destructive'}
+                                className={example.csg.policy?.startsWith('✅') 
                                   ? 'bg-[hsl(var(--success))] hover:bg-[hsl(var(--success))]' 
                                   : 'bg-[hsl(var(--danger))] hover:bg-[hsl(var(--danger))]'
                                 }
@@ -212,10 +241,10 @@ export const CodeDemo = () => {
                             </div>
                           </motion.div>
                         ) : (
-                          <div className="flex items-center justify-center h-64 text-muted-foreground">
+                          <div className="flex items-center justify-center h-80 text-muted-foreground">
                             <div className="text-center">
                               <FileJson className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                              <p>Click "Analyze with CSG" to see the semantic graph</p>
+                              <p>JSON output will appear after analysis</p>
                             </div>
                           </div>
                         )}
