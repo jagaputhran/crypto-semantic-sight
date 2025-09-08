@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { AlertTriangle, Search, Target, ShieldCheck } from "lucide-react";
+import { AlertTriangle, Search, Target, ShieldCheck, Globe, DollarSign, Clock, TrendingUp } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -55,6 +55,37 @@ const ourApproach = [
     title: "Language Agnostic",
     description: "Works across languages, wrappers, and abstractions",
     color: "text-indigo-600 dark:text-indigo-400"
+  }
+];
+
+const languageAgnosticBenefits = [
+  {
+    icon: Globe,
+    title: "Universal Coverage",
+    description: "One solution for Java, Python, C++, JavaScript, Go, and more",
+    businessValue: "Eliminates need for multiple vendor tools",
+    color: "text-blue-600 dark:text-blue-400"
+  },
+  {
+    icon: DollarSign,
+    title: "Cost Reduction", 
+    description: "Replace 3-5 language-specific tools with single platform",
+    businessValue: "60-80% reduction in security tooling costs",
+    color: "text-green-600 dark:text-green-400"
+  },
+  {
+    icon: Clock,
+    title: "Faster Deployment",
+    description: "Deploy once across entire polyglot codebase",
+    businessValue: "Weeks instead of months for enterprise rollout",
+    color: "text-orange-600 dark:text-orange-400"
+  },
+  {
+    icon: TrendingUp,
+    title: "Scalable Growth",
+    description: "Add new languages without new vendor relationships",
+    businessValue: "Future-proof investment as tech stack evolves",
+    color: "text-purple-600 dark:text-purple-400"
   }
 ];
 
@@ -167,36 +198,117 @@ export const ProblemStatement = () => {
           </Card>
         </motion.div>
 
+        {/* Language Agnostic Solution - Executive Focus */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-16"
+        >
+          <div className="text-center mb-12">
+            <Badge variant="default" className="text-lg px-4 py-2 mb-4 bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-200">
+              🌍 Language-Agnostic Solution
+            </Badge>
+            <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-foreground">
+              One Platform, Every Language
+            </h3>
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              Traditional tools require <strong>separate solutions</strong> for each programming language. 
+              Our semantic approach works across <em>all languages</em> from day one.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            {languageAgnosticBenefits.map((benefit, index) => (
+              <motion.div
+                key={benefit.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="h-full bg-gradient-to-br from-background to-accent/5 hover:shadow-[var(--shadow-medium)] transition-all duration-300 border-accent/20">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 rounded-lg bg-accent/10">
+                        <benefit.icon className={`w-6 h-6 ${benefit.color}`} />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-semibold mb-2 text-foreground">
+                          {benefit.title}
+                        </h4>
+                        <p className="text-muted-foreground mb-3 leading-relaxed">
+                          {benefit.description}
+                        </p>
+                        <div className="p-3 rounded-lg bg-accent/5">
+                          <p className={`text-sm font-medium ${benefit.color}`}>
+                            💼 {benefit.businessValue}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Executive Summary Card */}
+          <Card className="max-w-5xl mx-auto bg-gradient-to-r from-primary/5 to-accent/5 border-primary/20">
+            <CardContent className="p-8">
+              <h4 className="text-2xl font-bold mb-6 text-center text-primary">
+                Executive Summary: The Language-Agnostic Advantage
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div className="space-y-2">
+                  <div className="text-3xl font-bold text-green-600 dark:text-green-400">60-80%</div>
+                  <div className="text-sm text-muted-foreground">Cost Reduction</div>
+                  <div className="text-xs text-muted-foreground">vs. multiple tools</div>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">15+</div>
+                  <div className="text-sm text-muted-foreground">Languages Supported</div>
+                  <div className="text-xs text-muted-foreground">out of the box</div>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">75%</div>
+                  <div className="text-sm text-muted-foreground">Faster Deployment</div>
+                  <div className="text-xs text-muted-foreground">enterprise-wide</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
         {/* Key Insight */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
           className="mt-16"
         >
-          <Card className="max-w-4xl mx-auto enterprise-card bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
+          <Card className="max-w-4xl mx-auto enterprise-card bg-gradient-to-r from-primary/10 to-accent/10 border-primary/30">
             <CardContent className="p-8 text-center">
               <h3 className="text-2xl font-bold mb-4 text-primary">
-                The Core Insight
+                The Strategic Advantage
               </h3>
               <div className="space-y-4">
                 <p className="text-lg">
-                  <span className="font-semibold text-red-600 dark:text-red-400">Traditional tools see:</span>{" "}
+                  <span className="font-semibold text-red-600 dark:text-red-400">Traditional approach:</span>{" "}
                   <span className="font-mono bg-red-100 dark:bg-red-900/40 px-2 py-1 rounded text-red-800 dark:text-red-200">
-                    "function calls"
+                    "Multiple tools, fragmented coverage"
                   </span>
                 </p>
                 <p className="text-lg">
-                  <span className="font-semibold text-green-600 dark:text-green-400">We see:</span>{" "}
+                  <span className="font-semibold text-green-600 dark:text-green-400">Our approach:</span>{" "}
                   <span className="font-mono bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded text-green-800 dark:text-green-200">
-                    "cryptographic behavior"
+                    "Unified platform, complete visibility"
                   </span>
                 </p>
               </div>
               <div className="mt-6 p-4 bg-background/80 rounded-lg">
                 <p className="text-sm text-muted-foreground italic">
-                  That's why we can flag what others miss — not just <em>where</em> crypto is called, 
-                  but <em>how</em> crypto is actually used.
+                  Language-agnostic semantic analysis delivers what executives need: 
+                  <strong> comprehensive coverage, reduced complexity, and measurable ROI</strong>.
                 </p>
               </div>
             </CardContent>
