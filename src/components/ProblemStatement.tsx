@@ -163,14 +163,31 @@ export const ProblemStatement = () => {
                       {limitation.description}
                     </p>
                     <motion.div 
-                      className="bg-red-100 dark:bg-red-900/40 rounded-lg p-3"
+                      className="space-y-2"
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       transition={{ delay: 0.3 + index * 0.1 }}
                     >
-                      <pre className="text-xs font-mono text-red-800 dark:text-red-200 whitespace-pre-wrap">
-                        {limitation.example}
-                      </pre>
+                      <div className="bg-green-100 dark:bg-green-900/40 rounded-lg p-3 border-l-4 border-green-400">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-xs font-bold text-green-700 dark:text-green-300 uppercase tracking-wide">
+                            What Tool Shows
+                          </span>
+                        </div>
+                        <pre className="text-xs font-mono text-green-800 dark:text-green-200 whitespace-pre-wrap">
+                          {limitation.example.split('\n')[0]}
+                        </pre>
+                      </div>
+                      <div className="bg-red-100 dark:bg-red-900/40 rounded-lg p-3 border-l-4 border-red-500">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-xs font-bold text-red-700 dark:text-red-300 uppercase tracking-wide">
+                            Dangerous Reality
+                          </span>
+                        </div>
+                        <pre className="text-xs font-mono text-red-800 dark:text-red-200 whitespace-pre-wrap">
+                          {limitation.example.split('\n')[1]}
+                        </pre>
+                      </div>
                     </motion.div>
                   </CardContent>
                 </Card>
