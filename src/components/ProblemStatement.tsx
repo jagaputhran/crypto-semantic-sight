@@ -260,19 +260,16 @@ export const ProblemStatement = () => {
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                 <div className="space-y-2">
-                  <div className="text-3xl font-bold text-green-600 dark:text-green-400">60-80%</div>
-                  <div className="text-sm text-muted-foreground">Cost Reduction</div>
-                  <div className="text-xs text-muted-foreground">vs. multiple tools</div>
+                  <div className="text-xl font-bold text-green-600 dark:text-green-400">Significant Cost Reduction</div>
+                  <div className="text-sm text-muted-foreground">Replaces multiple vendor tools</div>
                 </div>
                 <div className="space-y-2">
-                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">15+</div>
-                  <div className="text-sm text-muted-foreground">Languages Supported</div>
-                  <div className="text-xs text-muted-foreground">out of the box</div>
+                  <div className="text-xl font-bold text-blue-600 dark:text-blue-400">Universal Coverage</div>
+                  <div className="text-sm text-muted-foreground">All major languages supported</div>
                 </div>
                 <div className="space-y-2">
-                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">75%</div>
-                  <div className="text-sm text-muted-foreground">Faster Deployment</div>
-                  <div className="text-xs text-muted-foreground">enterprise-wide</div>
+                  <div className="text-xl font-bold text-purple-600 dark:text-purple-400">Faster Deployment</div>
+                  <div className="text-sm text-muted-foreground">Enterprise-wide rollout</div>
                 </div>
               </div>
             </CardContent>
