@@ -6,27 +6,31 @@ import { Badge } from "@/components/ui/badge";
 const traditionalLimitations = [
   {
     icon: Search,
-    title: "API Call Blindness",
-    description: "Only flag isolated API calls (hashlib.md5()), blind to the flow of cryptographic material",
-    example: "❌ Sees: hashlib.md5() call\n✅ Misses: Key reuse across modules"
+    title: "Security Theater vs. Real Protection",
+    description: "Current tools create illusion of security by flagging surface-level issues while missing the real vulnerabilities that matter",
+    businessImpact: "False sense of security",
+    example: "🎭 Shows: 'Found crypto function'\n💥 Reality: Critical keys being reused everywhere"
   },
   {
     icon: Target,
-    title: "No Semantic Understanding", 
-    description: "Can't detect semantic misuse like AES in ECB mode, static IV reuse, or nonce collisions",
-    example: "❌ Sees: AES.new() call\n✅ Misses: ECB mode weakness"
+    title: "Missing the Forest for Trees", 
+    description: "Tools see individual components but miss how they work together—like checking car parts without testing if the car actually runs",
+    businessImpact: "Blind spots in critical systems",
+    example: "🔍 Shows: 'Encryption detected'\n🕳️ Reality: Using weakest possible settings"
   },
   {
     icon: AlertTriangle,
-    title: "Breaks Under Abstraction",
-    description: "Fails with aliasing, wrappers, or obfuscation (e.g., from hashlib import md5 as fast_hash)",
-    example: "❌ Sees: fast_hash() call\n✅ Misses: It's actually MD5"
+    title: "Easily Fooled by Simple Changes",
+    description: "A developer renames a function and suddenly the security tool loses track—like a guard who only recognizes people by their name tags",
+    businessImpact: "Bypassable security measures",
+    example: "👀 Shows: 'All clear, no MD5 found'\n🚨 Reality: MD5 renamed as 'fast_hash' everywhere"
   },
   {
     icon: ShieldCheck,
-    title: "No Compliance Context",
-    description: "No mapping to PCI, FIPS, NIST, CNSA standards — findings lack regulatory context",
-    example: "❌ Sees: Crypto violation\n✅ Misses: FIPS 140-2 requirement"
+    title: "Regulatory Compliance Guesswork",
+    description: "Tools flag generic issues but don't map to actual compliance requirements—leaving legal teams scrambling during audits",
+    businessImpact: "Audit failures and penalties",
+    example: "⚠️ Shows: 'Crypto issue detected'\n📋 Reality: No idea if it violates FIPS, PCI, or NIST"
   }
 ];
 
@@ -131,27 +135,43 @@ export const ProblemStatement = () => {
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.02, y: -5 }}
+                className="group"
               >
-                <Card className="h-full bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 border-red-200 dark:border-red-800 hover:shadow-[var(--shadow-medium)] transition-all duration-300">
+                <Card className="h-full bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 border-red-200 dark:border-red-800 hover:shadow-[var(--shadow-medium)] transition-all duration-300 group-hover:border-red-300 dark:group-hover:border-red-700">
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 rounded-lg bg-red-100 dark:bg-red-900/40">
+                      <motion.div 
+                        className="p-2 rounded-lg bg-red-100 dark:bg-red-900/40"
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.5 }}
+                      >
                         <limitation.icon className="w-5 h-5 text-red-600 dark:text-red-400" />
-                      </div>
+                      </motion.div>
                       <CardTitle className="text-lg text-red-800 dark:text-red-200">
                         {limitation.title}
                       </CardTitle>
+                    </div>
+                    <div className="bg-red-200/50 dark:bg-red-800/30 px-3 py-1 rounded-full">
+                      <p className="text-xs font-semibold text-red-700 dark:text-red-300 uppercase tracking-wide">
+                        💼 {limitation.businessImpact}
+                      </p>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-red-700 dark:text-red-300 mb-4 leading-relaxed">
                       {limitation.description}
                     </p>
-                    <div className="bg-red-100 dark:bg-red-900/40 rounded-lg p-3">
+                    <motion.div 
+                      className="bg-red-100 dark:bg-red-900/40 rounded-lg p-3"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.3 + index * 0.1 }}
+                    >
                       <pre className="text-xs font-mono text-red-800 dark:text-red-200 whitespace-pre-wrap">
                         {limitation.example}
                       </pre>
-                    </div>
+                    </motion.div>
                   </CardContent>
                 </Card>
               </motion.div>
