@@ -12,16 +12,22 @@ export const HeroSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-primary leading-tight">
-            From Syntax to Semantics:
+            Next-Generation Security:
             <br />
             <span className="bg-gradient-to-r from-primary to-[hsl(var(--primary-glow))] bg-clip-text text-transparent">
               The Crypto Semantic Graph
             </span>
           </h1>
           
-          <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed">
-            Automating compliance, crypto lineage, and risk detection — beyond today's code scanners.
+          <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto mb-8 leading-relaxed">
+            Transform your security posture with AI-powered semantic analysis that goes beyond traditional code scanning.
           </p>
+          
+          <div className="bg-card/50 backdrop-blur-sm border border-primary/20 rounded-2xl p-6 max-w-3xl mx-auto mb-12">
+            <p className="text-lg text-foreground/90 font-medium">
+              <span className="text-primary font-semibold">Enterprise Challenge:</span> Traditional static analysis tools create security blind spots, require multiple vendors, and generate false positives that slow development velocity.
+            </p>
+          </div>
           
           <motion.div 
             className="flex flex-wrap gap-4 justify-center mb-12"
