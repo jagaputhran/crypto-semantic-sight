@@ -8,7 +8,6 @@ const complianceData = [
     algorithm: "AES-256-GCM",
     oid: "2.16.840.1.101.3.4.1.46",
     nistStatus: "approved",
-    fipsStatus: "approved", 
     internalPolicy: "approved",
     usage: "Encrypt user data",
     recommendation: "✅ Fully compliant - recommended for production"
@@ -17,7 +16,6 @@ const complianceData = [
     algorithm: "AES-128-ECB",
     oid: "2.16.840.1.101.3.4.1.1",
     nistStatus: "deprecated",
-    fipsStatus: "approved",
     internalPolicy: "prohibited",
     usage: "Legacy system integration",
     recommendation: "❌ Prohibited - upgrade to GCM mode required"
@@ -26,7 +24,6 @@ const complianceData = [
     algorithm: "RSA-1024",
     oid: "1.2.840.113549.1.1.1",
     nistStatus: "deprecated",
-    fipsStatus: "legacy",
     internalPolicy: "review",
     usage: "Digital signatures",
     recommendation: "⚠️ Under review - migration to RSA-2048 planned"
@@ -35,7 +32,6 @@ const complianceData = [
     algorithm: "SHA-1",
     oid: "1.3.14.3.2.26", 
     nistStatus: "prohibited",
-    fipsStatus: "prohibited",
     internalPolicy: "prohibited",
     usage: "Hash verification",
     recommendation: "❌ Immediate replacement required - use SHA-256"
@@ -44,10 +40,9 @@ const complianceData = [
     algorithm: "ChaCha20-Poly1305",
     oid: "1.2.840.113549.1.9.16.3.18",
     nistStatus: "approved",
-    fipsStatus: "pending",
     internalPolicy: "approved",
     usage: "Mobile app encryption",
-    recommendation: "✅ Approved for mobile - FIPS validation pending"
+    recommendation: "✅ Approved for mobile use cases"
   }
 ];
 
@@ -108,7 +103,7 @@ export const ComplianceTable = () => {
             Automated Compliance Dashboard
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Real-time compliance status across NIST, FIPS, and internal security policies
+            Real-time compliance status across NIST and internal security policies
           </p>
         </motion.div>
 
@@ -127,7 +122,6 @@ export const ComplianceTable = () => {
                     <th className="text-left p-4 font-semibold">Algorithm</th>
                     <th className="text-left p-4 font-semibold">OID</th>
                     <th className="text-left p-4 font-semibold">NIST</th>
-                    <th className="text-left p-4 font-semibold">FIPS</th>
                     <th className="text-left p-4 font-semibold">Internal</th>
                     <th className="text-left p-4 font-semibold">Usage Context</th>
                     <th className="text-left p-4 font-semibold">Recommendation</th>
@@ -154,9 +148,6 @@ export const ComplianceTable = () => {
                       </td>
                       <td className="p-4">
                         <StatusBadge status={row.nistStatus} />
-                      </td>
-                      <td className="p-4">
-                        <StatusBadge status={row.fipsStatus} />
                       </td>
                       <td className="p-4">
                         <StatusBadge status={row.internalPolicy} />
