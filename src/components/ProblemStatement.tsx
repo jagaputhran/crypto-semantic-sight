@@ -97,6 +97,78 @@ export const ProblemStatement = () => {
   return (
     <section className="py-20 px-6 bg-[hsl(var(--surface))]">
       <div className="container max-w-7xl mx-auto">
+        {/* Executive Problem Statement */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <Card className="max-w-6xl mx-auto bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 border-red-200 dark:border-red-800">
+            <CardContent className="p-8">
+              <div className="text-center mb-8">
+                <Badge variant="destructive" className="text-lg px-4 py-2 mb-4">
+                  🚨 Critical Market Gap
+                </Badge>
+                <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+                  The $10M Cryptography Blind Spot
+                </h2>
+              </div>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="space-y-4"
+                >
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-red-600 dark:text-red-400 mb-2">90%</div>
+                    <p className="text-lg font-semibold text-muted-foreground">
+                      of mobile applications violate cryptography best practices
+                    </p>
+                  </div>
+                  
+                  <div className="bg-red-100 dark:bg-red-900/40 rounded-lg p-4">
+                    <h4 className="font-semibold text-red-800 dark:text-red-200 mb-2">The Root Cause</h4>
+                    <p className="text-sm text-red-700 dark:text-red-300">
+                      Existing tools use <strong>general-purpose static analysis</strong> that miss cryptographic elements, 
+                      or are <strong>language-specific</strong> leaving coverage gaps across polyglot environments.
+                    </p>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="space-y-4"
+                >
+                  <div className="bg-orange-100 dark:bg-orange-900/40 rounded-lg p-4">
+                    <h4 className="font-semibold text-orange-800 dark:text-orange-200 mb-2">
+                      💼 Business Impact
+                    </h4>
+                    <ul className="text-sm text-orange-700 dark:text-orange-300 space-y-1">
+                      <li>• Regulatory compliance failures</li>
+                      <li>• Quantum transition blind spots</li>
+                      <li>• Vendor tool fragmentation costs</li>
+                      <li>• Manual review overhead</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-background/80 rounded-lg p-4 border border-muted">
+                    <p className="text-sm italic text-muted-foreground">
+                      "Current tools excel at <strong>large-scale coverage</strong> but yield 
+                      <strong> false positives</strong> and cannot trace how keys, nonces, or 
+                      digests are actually used in application code."
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -104,7 +176,7 @@ export const ProblemStatement = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-            The Problem with Traditional Static Analysis
+            Why Traditional Static Analysis Fails
           </h2>
           <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             Tools like <strong>CodeQL, Joern, Bandit, ESLint</strong> were built for generic security patterns — 
@@ -204,15 +276,29 @@ export const ProblemStatement = () => {
         >
           <div className="text-center mb-8">
             <Badge variant="default" className="text-lg px-4 py-2 mb-4 bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-200">
-              🚀 What We Do Differently
+              🚀 Our Solution: LAIR
             </Badge>
-            <p className="text-lg text-muted-foreground">
-              We build a <strong>Crypto Semantic Graph (CSG)</strong> that models <em>intent</em>, not just syntax
+            <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-foreground">
+              Language-Agnostic Information Retrieval
+            </h3>
+            <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              We build a <strong>Crypto Semantic Graph (CSG)</strong> that models <em>intent</em>, not just syntax. 
+              LAIR detects cryptographic algorithms and their supporting elements regardless of programming language.
             </p>
           </div>
 
-          <Card className="max-w-5xl mx-auto bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-green-200 dark:border-green-800">
+          <Card className="max-w-5xl mx-auto bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-green-200 dark:border-green-800 mb-8">
             <CardContent className="p-8">
+              <div className="text-center mb-6">
+                <h4 className="text-xl font-bold text-green-800 dark:text-green-200 mb-4">
+                  🧠 How LAIR Works: Semantic Understanding
+                </h4>
+                <p className="text-muted-foreground mb-6">
+                  Instead of parsing entire codebases, LAIR takes a targeted approach to detect and store 
+                  only <strong>cryptographic information</strong> that matters.
+                </p>
+              </div>
+              
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {ourApproach.map((approach, index) => (
                   <motion.div
@@ -233,6 +319,37 @@ export const ProblemStatement = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Technical Advantage */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <Card className="max-w-4xl mx-auto bg-gradient-to-r from-primary/5 to-accent/5 border-primary/20">
+              <CardContent className="p-6">
+                <div className="text-center">
+                  <h4 className="text-lg font-bold text-primary mb-4">
+                    🎯 Unified Representation Advantage
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                    <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3">
+                      <div className="font-semibold text-blue-800 dark:text-blue-200">Semantic Graphs</div>
+                      <div className="text-blue-600 dark:text-blue-400">Python, Java, JS → Same JSON</div>
+                    </div>
+                    <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3">
+                      <div className="font-semibold text-purple-800 dark:text-purple-200">Cross-Language Rules</div>
+                      <div className="text-purple-600 dark:text-purple-400">Write once, apply everywhere</div>
+                    </div>
+                    <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-3">
+                      <div className="font-semibold text-green-800 dark:text-green-200">Lightweight</div>
+                      <div className="text-green-600 dark:text-green-400">Crypto-relevant nodes only</div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </motion.div>
 
         {/* Language Agnostic Solution - Executive Focus */}
@@ -254,6 +371,64 @@ export const ProblemStatement = () => {
               Our semantic approach works across <em>all languages</em> from day one.
             </p>
           </div>
+
+          {/* Real-World Business Case */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-12"
+          >
+            <Card className="max-w-6xl mx-auto bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-blue-200 dark:border-blue-800">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <Badge variant="default" className="text-base px-3 py-1 mb-3 bg-blue-600 text-white">
+                    📊 Enterprise Use Case
+                  </Badge>
+                  <h4 className="text-2xl font-bold text-blue-900 dark:text-blue-100 mb-4">
+                    Comcast: Thousands of Applications, Multiple Languages
+                  </h4>
+                </div>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <div className="bg-blue-100 dark:bg-blue-900/40 rounded-lg p-4">
+                      <h5 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
+                        🎯 Strategic Requirements
+                      </h5>
+                      <ul className="text-sm text-blue-700 dark:text-blue-300 space-y-1">
+                        <li>• Detect outdated algorithms violating encryption standards</li>
+                        <li>• Prepare for quantum-ready cipher migration</li>
+                        <li>• Cover thousands of GitHub Enterprise applications</li>
+                        <li>• Support wide range of programming languages</li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div className="bg-green-100 dark:bg-green-900/40 rounded-lg p-4">
+                      <h5 className="font-semibold text-green-800 dark:text-green-200 mb-2">
+                        💰 Measurable ROI
+                      </h5>
+                      <ul className="text-sm text-green-700 dark:text-green-300 space-y-1">
+                        <li>• Saves <strong>2+ years</strong> of individual language solutions</li>
+                        <li>• Eliminates <strong>hundreds of hours</strong> of manual review</li>
+                        <li>• Reduces vendor & compliance costs significantly</li>
+                        <li>• Strategic edge: No competing market products</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-6 p-4 bg-background/80 rounded-lg border border-dashed border-blue-300 dark:border-blue-700">
+                  <p className="text-center text-sm italic text-muted-foreground">
+                    <strong>"Language-specific approaches make comprehensive coverage impossible. 
+                    A semantic solution gives us the strategic edge we need for quantum transition."</strong>
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
             {languageAgnosticBenefits.map((benefit, index) => (
